@@ -1,107 +1,294 @@
 :root {
-  --max-width: 1100px;
-  --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
-    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-
-  --primary-glow: conic-gradient(
-    from 180deg at 50% 50%,
-    #16abff33 0deg,
-    #0885ff33 55deg,
-    #54d6ff33 120deg,
-    #0071ff33 160deg,
-    transparent 360deg
-  );
-  --secondary-glow: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
-
-  --tile-start-rgb: 239, 245, 249;
-  --tile-end-rgb: 228, 232, 233;
-  --tile-border: conic-gradient(
-    #00000080,
-    #00000040,
-    #00000030,
-    #00000020,
-    #00000010,
-    #00000010,
-    #00000080
-  );
-
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
+  --background-color: green;
+  --text-color: hsl(0, 0%, 100%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
-
-    --tile-start-rgb: 2, 13, 46;
-    --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
-    );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
-  }
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
+body {
   margin: 0;
+  padding: 0;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+/* TITLE */
+.title {
+  margin: 0;
+  display: grid;
+  place-content: center;
+  background-color: var(--background-color);
+  font-family: "Oswald", sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-color);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.title > div {
+  grid-area: 1/1/-1/-1;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.title .top {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 48%, 0% 58%);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.title .bottom {
+  clip-path: polygon(0% 60%, 100% 50%, 100% 100%, 0% 100%);
+  color: transparent;
+  background: linear-gradient(177deg, green 53%, var(--text-color) 65%);
+  background-clip: text;
+  transform: translateX(-0.02em);
+}
+
+/* BUNNY */
+.canvas {
+  width: 500px;
+  height: 800px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.head {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 6px solid black;
+  margin: 160px auto 0 auto;
+  transform: rotate(10deg);
+}
+
+.ear {
+  width: 45px;
+  height: 150px;
+  border-radius: 50% 50% 0 0;
+  border: 6px solid black;
+  position: absolute;
+  top: -130px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ear.left {
+  left: 20px;
+  transform: rotate(-10deg);
+}
+
+.ear.right {
+  right: 20px;
+  transform: rotate(10deg);
+}
+
+.ear-inner {
+  width: 70%;
+  height: 80%;
+  position: absolute;
+  top: 13%;
+  left: 13%;
+  right: 0;
+  bottom: 0;
+  background-color: pink;
+  border-radius: 50% 50% 0 0;
+}
+
+.eye {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: black;
+  position: absolute;
+  top: 75px;
+  bottom: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.eye.left {
+  left: 50px;
+}
+
+.eye.right {
+  right: 50px;
+}
+
+.nose {
+  width: 22px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: black;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.body {
+  width: 100%;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: -40px;
+}
+
+.paw {
+  width: 100px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid black;
+  background-color: #fff;
+  position: absolute;
+  top: -20px;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.paw .finger {
+  position: relative;
+  top: -10px;
+  width: 5px;
+  height: 12px;
+  background-color: pink;
+  display: block;
+}
+
+.paw.left {
+  left: 120px;
+  transform: rotate(-25deg);
+}
+
+.paw.right {
+  right: 120px;
+  transform: rotate(25deg);
+}
+
+.egg {
+  width: 300px;
+  height: 400px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  border: 3px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  transform: rotate(-2deg);
+  background-color: white;
+  overflow: hidden;
+}
+
+.wave {
+  --size: 24px;
+  --b: 12px;
+  --m: 0.5;
+  --p: calc(var(--m) * var(--size));
+  --R: calc(var(--size) * sqrt(var(--m) * var(--m) + 1) + var(--b) / 2);
+
+  --_g: #0000 calc(99% - var(--b)), #000 calc(101% - var(--b)) 99%, #0000 101%;
+  -webkit-mask: radial-gradient(var(--R) at left 50% bottom calc(-1 * var(--p)), var(--_g))
+      calc(50% - 2 * var(--size)) calc(50% - var(--size) / 2 - var(--b) / 2) / calc(4 * var(--size))
+      calc(var(--size) + var(--b)) repeat-x,
+    radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), var(--_g)) 50%
+      calc(50% + var(--size) / 2 + var(--b) / 2) / calc(4 * var(--size))
+      calc(var(--size) + var(--b)) repeat-x;
+  background: linear-gradient(90deg, red, blue);
+  height: 50px;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.wave:nth-child(1) {
+  margin-top: 15px;
+}
+
+.wave:nth-child(2) {
+  margin-top: 30px;
+}
+
+.wave:nth-child(3) {
+  margin-top: 45px;
+}
+
+.wave:nth-child(4) {
+  margin-top: 45px;
+}
+
+.foot {
+  width: 160px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid black;
+  background-color: #fff;
+  position: relative;
+  z-index: -1;
+  position: absolute;
+}
+
+.foot.left {
+  top: 270px;
+  left: 20px;
+  transform: rotate(45deg);
+}
+
+.foot.right {
+  top: 290px;
+  right: 20px;
+  transform: rotate(-50deg);
+}
+
+.sole {
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  background-color: pink;
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+}
+
+.sole.left {
+  top: 25%;
+  left: 25%;
+}
+
+.sole.right {
+  top: 25%;
+  right: 25%;
+}
+
+.foot .finger {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: pink;
+  display: block;
+  position: absolute;
+}
+
+.foot.left .finger:nth-child(1) {
+  top: 65px;
+  left: 25px;
+}
+
+.foot.left .finger:nth-child(2) {
+  top: 42px;
+  left: 15px;
+}
+
+.foot.left .finger:nth-child(3) {
+  top: 20px;
+  left: 25px;
+}
+
+.foot.right .finger:nth-child(1) {
+  top: 65px;
+  right: 25px;
+}
+
+.foot.right .finger:nth-child(2) {
+  top: 42px;
+  right: 15px;
+}
+
+.foot.right .finger:nth-child(3) {
+  top: 20px;
+  right: 25px;
 }
